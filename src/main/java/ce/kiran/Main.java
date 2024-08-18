@@ -1,6 +1,13 @@
 package ce.kiran;
 
+import com.cloudbees.plugins.credentials.Credentials;
+import com.cloudbees.plugins.credentials.common.IdCredentials;
+import com.cloudbees.plugins.credentials.domains.DomainRequirement;
+import jenkins.model.Jenkins;
+import org.acegisecurity.Authentication;
+
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.Map;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
@@ -8,8 +15,15 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         Map<String, String> env = System.getenv();
-        byte[] val = env.get("JENKINS_OIDC_CREDENTIAL").getBytes(StandardCharsets.UTF_8);
-        String token = new String(val);
-        System.out.println(token);
+        String val = env.get("JENKINS_OIDC_CREDENTIAL");
+        System.out.println(val);
+        List<IdCredentials> creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+          com.cloudbees.plugins.credentials.common.IdCredentials.class,
+                (hudson.model.ItemGroup) Jenkins.getInstance(), (Authentication) null, (DomainRequirement) null
+        );
+        for (IdCredentials c : creds) {
+            System.out.println(c.getClass());
+        }
+
     }
 }
