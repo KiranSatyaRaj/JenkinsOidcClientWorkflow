@@ -29,6 +29,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>repo.jenkins-ci.org</id>
+            <url>https://repo.jenkins-ci.org/public/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/dev.sigstore/sigstore-java -->
         <dependency>
@@ -51,6 +58,7 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.jenkins-ci.main/maven-plugin -->
+
 
     </dependencies>
 
