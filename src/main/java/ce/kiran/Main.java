@@ -16,13 +16,6 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         Map<String, String> env = System.getenv();
-        System.out.println(env);
-        List<? extends Credentials> creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-          com.cloudbees.plugins.credentials.common.StandardCredentials.class, (ItemGroup) Jenkins.getInstanceOrNull(),
-                (Authentication) null, (DomainRequirement)  null
-        );
-        for (Credentials c : creds) {
-            System.out.println(c.getDescriptor());
-        }
+        System.out.println(env.get("IDTOKEN"));
     }
 }

@@ -62,6 +62,12 @@
             <artifactId>spring-boot</artifactId>
             <version>3.3.2</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.jenkins.plugins/oidc-provider -->
+        <dependency>
+            <groupId>io.jenkins.plugins</groupId>
+            <artifactId>oidc-provider</artifactId>
+            <version>79.v46f0066a_d813</version>
+        </dependency>
 
 
     </dependencies>
