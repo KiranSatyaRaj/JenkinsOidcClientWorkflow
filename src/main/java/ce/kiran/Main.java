@@ -17,13 +17,12 @@ public class Main {
         Map<String, String> env = System.getenv();
         String val = env.get("JENKINS_OIDC_CREDENTIAL");
         System.out.println(val);
-        List<IdCredentials> creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-          com.cloudbees.plugins.credentials.common.IdCredentials.class,
-                (hudson.model.ItemGroup) Jenkins.getInstance(), (Authentication) null, (DomainRequirement) null
+        List<? extends Credentials> creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+          com.cloudbees.plugins.credentials.common.StandardCredentials.class,
+                (Authentication) null
         );
-        for (IdCredentials c : creds) {
-            System.out.println(c.getClass());
+        for (Credentials c : creds) {
+            System.out.println(c.getDescriptor());
         }
-
     }
 }
