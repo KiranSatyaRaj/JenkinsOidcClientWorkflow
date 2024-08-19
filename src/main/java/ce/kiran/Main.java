@@ -3,6 +3,7 @@ package ce.kiran;
 import com.cloudbees.plugins.credentials.Credentials;
 import com.cloudbees.plugins.credentials.common.IdCredentials;
 import com.cloudbees.plugins.credentials.domains.DomainRequirement;
+import hudson.model.ItemGroup;
 import jenkins.model.Jenkins;
 import org.acegisecurity.Authentication;
 
@@ -15,11 +16,10 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         Map<String, String> env = System.getenv();
-        String val = env.get("JENKINS_OIDC_CREDENTIAL");
-        System.out.println(val);
+        System.out.println(env);
         List<? extends Credentials> creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
-          com.cloudbees.plugins.credentials.common.StandardCredentials.class,
-                (Authentication) null
+          com.cloudbees.plugins.credentials.common.StandardCredentials.class, (ItemGroup) Jenkins.getInstanceOrNull(),
+                (Authentication) null, (DomainRequirement)  null
         );
         for (Credentials c : creds) {
             System.out.println(c.getDescriptor());
