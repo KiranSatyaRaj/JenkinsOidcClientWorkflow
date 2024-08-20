@@ -59,10 +59,10 @@ public class JenkinsOidcClient implements OidcClient {
 
             JenkinsOidcJsonResponse resp = req.execute().parseAs(JenkinsOidcJsonResponse.class);
             String tokenValue = resp.getValue();
-            JsonWebSignature jws = JsonWebSignature.parse(new GsonFactory(), tokenValue);
+            JsonWebSignature jws = JsonWebSignature.parse(new GsonFactory(), idToken);
 
             return ImmutableOidcToken.builder()
-                    .idToken(tokenValue)
+                    .idToken(idToken)
                     .issuer(jws.getPayload().getIssuer())
                     .subjectAlternativeName(jws.getPayload().getSubject())
                     .build();
