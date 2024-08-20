@@ -1,16 +1,23 @@
 package ce.kiran;
 
-import org.jose4j.jws.JsonWebSignature;
-import org.jose4j.lang.JoseException;
+import com.google.api.client.auth.openidconnect.IdToken;
+import com.google.api.client.json.Json;
+
+import java.io.IOException;
 import java.util.Map;
+
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.client.json.webtoken.JsonWebSignature;
+import com.google.api.client.json.
+import org.springframework.http.converter.json.GsonFactoryBean;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) throws JoseException {
+    public static void main(String[] args) throws IOException {
         Map<String, String> env = System.getenv();
         String token = env.get("IDTOKEN");
-        JsonWebSignature jws = (JsonWebSignature) JsonWebSignature.fromCompactSerialization(token);
-        System.out.println(jws);
+        JsonWebSignature jws = JsonWebSignature.parse(new GsonFactory(), token);
+        System.out.println(jws.getHeader());
     }
 }
