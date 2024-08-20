@@ -69,6 +69,13 @@
             <version>79.v46f0066a_d813</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.bitbucket.b_c/jose4j -->
+        <dependency>
+            <groupId>org.bitbucket.b_c</groupId>
+            <artifactId>jose4j</artifactId>
+            <version>0.9.6</version>
+        </dependency>
+
 
     </dependencies>
 
