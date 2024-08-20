@@ -1,21 +1,16 @@
 package ce.kiran;
 
-import com.cloudbees.plugins.credentials.Credentials;
-import com.cloudbees.plugins.credentials.common.IdCredentials;
-import com.cloudbees.plugins.credentials.domains.DomainRequirement;
-import hudson.model.ItemGroup;
-import jenkins.model.Jenkins;
-import org.acegisecurity.Authentication;
-
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+import org.jose4j.jws.JsonWebSignature;
+import org.jose4j.lang.JoseException;
 import java.util.Map;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws JoseException {
         Map<String, String> env = System.getenv();
-        System.out.println(env.get("IDTOKEN"));
+        String token = env.get("IDTOKEN");
+        JsonWebSignature jws = (JsonWebSignature) JsonWebSignature.fromCompactSerialization(token);
+        System.out.println(jws);
     }
 }
