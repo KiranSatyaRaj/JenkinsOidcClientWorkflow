@@ -48,7 +48,7 @@ public class JenkinsOidcClient implements OidcClient {
 
         // Use the issuer URL as the base URL
         String issuerUrl = "https://127.0.0.1:8082/oidc";
-        GenericUrl url = new GenericUrl(issuerUrl + "/some-endpoint?audience=" + this.audience);
+        GenericUrl url = new GenericUrl(issuerUrl + "/?audience=" + this.audience);
 
         try {
             HttpRequest req = HttpClients.newRequestFactory(this.httpParams).buildGetRequest(url);
