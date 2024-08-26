@@ -24,16 +24,18 @@ import dev.sigstore.tuf.SigstoreTufClient;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws IOException, InvalidAlgorithmParameterException, CertificateException, NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, KeylessSignerException {
-        OidcClients clients = OidcClients.of(JenkinsOidcClient.builder().build());
-        KeylessSigner signer = KeylessSigner.builder()
-                .oidcClients(clients)
-                .signer(Signers.newRsaSigner())
-                .trustedRootProvider(TrustedRootProvider.from(SigstoreTufClient.builder().usePublicGoodInstance()))
-                .fulcioUrl(FulcioClient.PUBLIC_GOOD_URI)
-                .rekorUrl(RekorClient.PUBLIC_GOOD_URI)
-                .minSigningCertificateLifetime(KeylessSigner.DEFAULT_MIN_SIGNING_CERTIFICATE_LIFETIME)
-                .build();
-        Bundle result = signer.signFile(Paths.get("src/main/java/ce/kiran/hello.txt"));
-        System.out.println(result.toJson());
+//        OidcClients clients = OidcClients.of(JenkinsOidcClient.builder().build());
+//        KeylessSigner signer = KeylessSigner.builder()
+//                .oidcClients(clients)
+//                .signer(Signers.newRsaSigner())
+//                .trustedRootProvider(TrustedRootProvider.from(SigstoreTufClient.builder().usePublicGoodInstance()))
+//                .fulcioUrl(FulcioClient.PUBLIC_GOOD_URI)
+//                .rekorUrl(RekorClient.PUBLIC_GOOD_URI)
+//                .minSigningCertificateLifetime(KeylessSigner.DEFAULT_MIN_SIGNING_CERTIFICATE_LIFETIME)
+//                .build();
+//        Bundle result = signer.signFile(Paths.get("src/main/java/ce/kiran/hello.txt"));
+//        System.out.println(result.toJson());
+        String isCI = System.getenv("CI");
+        System.out.println("Does the current environment is a CI? " + isCI);
     }
 }
