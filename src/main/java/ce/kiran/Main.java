@@ -19,6 +19,7 @@ import dev.sigstore.fulcio.client.FulcioClient;
 import dev.sigstore.oidc.client.OidcClients;
 import dev.sigstore.rekor.client.RekorClient;
 import dev.sigstore.tuf.SigstoreTufClient;
+import io.jenkins.plugins.oidc_provider.IdTokenCredentials;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -37,5 +38,7 @@ public class Main {
 //        System.out.println(result.toJson());
         String isCI = System.getenv("CI");
         System.out.println("Does the current environment is a CI? " + isCI);
+        IdTokenCredentials token = JenkinsOidcClient.getCredentials();
+        System.out.println(token);
     }
 }
